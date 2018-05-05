@@ -1,7 +1,7 @@
 DEPENDPATH += ../game
 INCLUDEPATH += ../game
 
-CONFIG += c++11 link_pkgconfig
+CONFIG += c++11
 
 TEMPLATE = app
 TARGET = MicroTactics
@@ -9,6 +9,4 @@ TARGET = MicroTactics
 SOURCES += \
     main.cpp
 
-PKGCONFIG += sdl2
-
-LIBS += -lMagnum -lMagnumSdl2Application -lCorradeUtility -lMagnumShaders -L../game -lgame
+LIBS += -L../game -lgame

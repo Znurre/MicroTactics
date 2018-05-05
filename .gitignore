@@ -7,6 +7,7 @@
 *.la
 *.lai
 *.so
+*.so.*
 *.dll
 *.dylib
 
@@ -37,3 +38,5 @@ Makefile*
 # QtCtreator CMake
 CMakeLists.txt.user*
 
+# Binary
+runner/MicroTactics

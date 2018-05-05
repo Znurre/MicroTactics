@@ -1,3 +1,5 @@
+#include <QKeyEvent>
+
 #include "KeyInputHandler.h"
 #include "IPlayerTurnHandler.h"
 #include "Player.h"
@@ -7,48 +9,48 @@ KeyInputHandler::KeyInputHandler(IPlayerTurnHandler &playerTurnHandler)
 {
 }
 
-void KeyInputHandler::onKeyPress(Platform::Sdl2Application::KeyEvent::Key key)
+void KeyInputHandler::onKeyPress(int key)
 {
 	IPlayer &player = m_playerTurnHandler.current();
 
 	switch (key)
 	{
-		case Platform::Sdl2Application::KeyEvent::Key::Q:
+		case Qt::Key_Q:
 		{
 			player.shoot();
 
 			return m_playerTurnHandler.next();
 		}
 
-		case Platform::Sdl2Application::KeyEvent::Key::E:
+		case Qt::Key_E:
 		{
 			player.melee();
 
 			return m_playerTurnHandler.next();
 		}
 
-		case Platform::Sdl2Application::KeyEvent::Key::A:
+		case Qt::Key_A:
 		{
 			player.rotate(-1);
 
 			return m_playerTurnHandler.next();
 		}
 
-		case Platform::Sdl2Application::KeyEvent::Key::D:
+		case Qt::Key_D:
 		{
 			player.rotate(1);
 
 			return m_playerTurnHandler.next();
 		}
 
-		case Platform::Sdl2Application::KeyEvent::Key::W:
+		case Qt::Key_W:
 		{
 			player.advance();
 
 			return m_playerTurnHandler.next();
 		}
 
-		case Platform::Sdl2Application::KeyEvent::Key::S:
+		case Qt::Key_S:
 		{
 			player.retreat();
 

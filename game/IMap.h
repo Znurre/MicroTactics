@@ -14,7 +14,7 @@ class IMapTile : public IDrawable
 class IMap
 {
 	public:
-		virtual QList<IMapTile *> tiles() const = 0;
+		virtual QList<IMapTile *> tiles() = 0;
 };
 
 #endif // IMAP_H

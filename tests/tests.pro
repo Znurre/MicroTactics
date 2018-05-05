@@ -11,7 +11,6 @@ QT       -= gui
 TARGET = tst_PlayerTest
 CONFIG   += console
 CONFIG   -= app_bundle
-CONFIG += link_pkgconfig
 
 TEMPLATE = app
 
@@ -31,8 +30,6 @@ INCLUDEPATH += ../game
 
 SOURCES += \
     main.cpp
-
-PKGCONFIG += sdl2
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 

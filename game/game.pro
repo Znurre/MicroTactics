@@ -6,11 +6,7 @@ TEMPLATE = lib
 TARGET = game
 INCLUDEPATH += .
 
-CONFIG += c++11 link_pkgconfig
-
-PKGCONFIG += sdl2
-
-LIBS += -lMagnum -lMagnumSdl2Application -lCorradeUtility -lMagnumShaders
+CONFIG += c++11
 
 DISTFILES += \
 	shader.vert \
@@ -29,7 +25,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 # Input
 HEADERS += Player.h \
-    Application.h \
     KeyInputHandler.h \
     IPlayerTurnHandler.h \
     PlayerTurnHandler.h \
@@ -39,12 +34,13 @@ HEADERS += Player.h \
     Board.h \
     IDrawable.h \
     IMap.h \
-    Map.h
+    Map.h \
+    Window.h
 
 SOURCES += \
-    Application.cpp \
     KeyInputHandler.cpp \
     PlayerTurnHandler.cpp \
     PlayerHandler.cpp \
     Board.cpp \
-    Map.cpp
+    Map.cpp \
+    Window.cpp

@@ -3,16 +3,14 @@
 class GroundTile : public IMapTile
 {
 	public:
-		GroundTile(MyShader &shader, int x, int y)
-			: m_shader(shader)
-			, m_x(x)
+		GroundTile(int x, int y)
+			: m_x(x)
 			, m_y(y)
 		{
 		}
 
 		void draw() override
 		{
-
 		}
 
 		bool isCollidable() const override
@@ -21,23 +19,50 @@ class GroundTile : public IMapTile
 		}
 
 	private:
-		MyShader &m_shader;
+		int m_x;
+		int m_y;
+};
 
+class CoverTile : public IMapTile
+{
+	public:
+		CoverTile(int x, int y)
+			: m_x(x)
+			, m_y(y)
+		{
+		}
+
+		void draw() override
+		{
+		}
+
+		bool isCollidable() const override
+		{
+			return true;
+		}
+
+	private:
 		int m_x;
 		int m_y;
 };
 
 Map::Map()
 {
+
 }
 
-QList<IMapTile *> Map::tiles() const
+QList<IMapTile *> Map::tiles()
 {
 	return
 	{
-		new GroundTile(m_shader, 0, 0),
-		new GroundTile(m_shader, 1, 0),
-		new GroundTile(m_shader, 0, 1),
-		new GroundTile(m_shader, 1, 1)
+		new GroundTile(0, 0),
+		new GroundTile(1, 0),
+		new GroundTile(0, 1),
+		new CoverTile(1, 1),
+		new GroundTile(2, 0),
+		new GroundTile(2, 1),
+		new GroundTile(0, 2),
+		new GroundTile(1, 2),
+		new GroundTile(2, 2),
 	};
 }

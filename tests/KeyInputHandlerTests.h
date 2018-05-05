@@ -5,15 +5,12 @@
 #include <QTest>
 #include <QDebug>
 
-#include <Magnum/Platform/Sdl2Application.h>
-
 #include "IPlayerTurnHandler.h"
 #include "KeyInputHandler.h"
 #include "Player.h"
 
 #include "fakeit.hpp"
 
-using namespace Magnum;
 using namespace fakeit;
 
 class KeyInputHandlerTests : public QObject
@@ -37,7 +34,7 @@ class KeyInputHandlerTests : public QObject
 		{
 			KeyInputHandler keyInputHandler(m_playerTurnHandlerMock.get());
 
-			keyInputHandler.onKeyPress(Platform::Sdl2Application::KeyEvent::Key::W);
+			keyInputHandler.onKeyPress(Qt::Key_W);
 
 			Verify(Method(m_playerMock, advance) + Method(m_playerTurnHandlerMock, next));
 		}
@@ -46,7 +43,7 @@ class KeyInputHandlerTests : public QObject
 		{
 			KeyInputHandler keyInputHandler(m_playerTurnHandlerMock.get());
 
-			keyInputHandler.onKeyPress(Platform::Sdl2Application::KeyEvent::Key::S);
+			keyInputHandler.onKeyPress(Qt::Key_S);
 
 			Verify(Method(m_playerMock, retreat) + Method(m_playerTurnHandlerMock, next));
 		}
@@ -55,7 +52,7 @@ class KeyInputHandlerTests : public QObject
 		{
 			KeyInputHandler keyInputHandler(m_playerTurnHandlerMock.get());
 
-			keyInputHandler.onKeyPress(Platform::Sdl2Application::KeyEvent::Key::D);
+			keyInputHandler.onKeyPress(Qt::Key_D);
 
 			Verify(Method(m_playerMock, rotate).Using(1) + Method(m_playerTurnHandlerMock, next));
 		}
@@ -64,7 +61,7 @@ class KeyInputHandlerTests : public QObject
 		{
 			KeyInputHandler keyInputHandler(m_playerTurnHandlerMock.get());
 
-			keyInputHandler.onKeyPress(Platform::Sdl2Application::KeyEvent::Key::A);
+			keyInputHandler.onKeyPress(Qt::Key_A);
 
 			Verify(Method(m_playerMock, rotate).Using(-1) + Method(m_playerTurnHandlerMock, next));
 		}
@@ -73,7 +70,7 @@ class KeyInputHandlerTests : public QObject
 		{
 			KeyInputHandler keyInputHandler(m_playerTurnHandlerMock.get());
 
-			keyInputHandler.onKeyPress(Platform::Sdl2Application::KeyEvent::Key::Q);
+			keyInputHandler.onKeyPress(Qt::Key_Q);
 
 			Verify(Method(m_playerMock, shoot) + Method(m_playerTurnHandlerMock, next));
 		}
@@ -82,7 +79,7 @@ class KeyInputHandlerTests : public QObject
 		{
 			KeyInputHandler keyInputHandler(m_playerTurnHandlerMock.get());
 
-			keyInputHandler.onKeyPress(Platform::Sdl2Application::KeyEvent::Key::E);
+			keyInputHandler.onKeyPress(Qt::Key_E);
 
 			Verify(Method(m_playerMock, melee) + Method(m_playerTurnHandlerMock, next));
 		}
