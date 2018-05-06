@@ -4,9 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += testlib
-
-QT       -= gui
+QT += testlib
 
 TARGET = tst_PlayerTest
 CONFIG   += console

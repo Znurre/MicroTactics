@@ -35,7 +35,14 @@ HEADERS += Player.h \
     IDrawable.h \
     IMap.h \
     Map.h \
-    Window.h
+    Window.h \
+    Character.h \
+    Turret.h \
+    ICharacterProperties.h \
+    IPalette.h \
+    Palette1.h \
+    IFaceTemplate.h \
+    CuteFaceTemplate.h
 
 SOURCES += \
     KeyInputHandler.cpp \
@@ -43,4 +50,9 @@ SOURCES += \
     PlayerHandler.cpp \
     Board.cpp \
     Map.cpp \
-    Window.cpp
+    Window.cpp \
+    Player.cpp \
+    Character.cpp \
+    Turret.cpp \
+    Palette1.cpp \
+    CuteFaceTemplate.cpp

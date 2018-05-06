@@ -9,8 +9,16 @@ class GroundTile : public IMapTile
 		{
 		}
 
-		void draw() override
+		void draw(QPainter &painter) override
 		{
+			static const QImage image("resources/ground.png");
+
+			const int width = image.width();
+			const int height = image.height();
+			const int x = m_x * (width / 2) - m_y * (width / 2);
+			const int y = m_x * (height / 4) + m_y * (height / 4);
+
+			painter.drawImage(x, -y, image);
 		}
 
 		bool isCollidable() const override
@@ -32,8 +40,16 @@ class CoverTile : public IMapTile
 		{
 		}
 
-		void draw() override
+		void draw(QPainter &painter) override
 		{
+			static const QImage image("resources/cover.png");
+
+			const int width = image.width();
+			const int height = image.height();
+			const int x = m_x * (width / 2) - m_y * (width / 2);
+			const int y = m_x * (height / 4) + m_y * (height / 4);
+
+			painter.drawImage(x, -y, image);
 		}
 
 		bool isCollidable() const override
@@ -53,16 +69,18 @@ Map::Map()
 
 QList<IMapTile *> Map::tiles()
 {
-	return
+	static const QList<IMapTile *> tiles =
 	{
-		new GroundTile(0, 0),
-		new GroundTile(1, 0),
-		new GroundTile(0, 1),
-		new CoverTile(1, 1),
-		new GroundTile(2, 0),
-		new GroundTile(2, 1),
-		new GroundTile(0, 2),
-		new GroundTile(1, 2),
 		new GroundTile(2, 2),
+		new GroundTile(2, 1),
+		new GroundTile(2, 0),
+		new GroundTile(1, 2),
+		new CoverTile(1, 1),
+		new GroundTile(1, 0),
+		new GroundTile(0, 2),
+		new GroundTile(0, 1),
+		new GroundTile(0, 0),
 	};
+
+	return tiles;
 }

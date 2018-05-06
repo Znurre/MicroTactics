@@ -10,7 +10,7 @@ class Board : public IDrawable
 	public:
 		Board();
 
-		void draw() override;
+		void draw(QPainter &painter) override;
 
 	private:
 		Map m_dummyMap;

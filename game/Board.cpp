@@ -5,10 +5,10 @@ Board::Board()
 {
 }
 
-void Board::draw()
+void Board::draw(QPainter &painter)
 {
 	for (IMapTile *tile : m_map.tiles())
 	{
-		tile->draw();
+		tile->draw(painter);
 	}
 }

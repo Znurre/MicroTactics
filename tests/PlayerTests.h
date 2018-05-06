@@ -16,7 +16,7 @@ class PlayerTests : public QObject
 
 			player.rotate(1);
 
-			QCOMPARE(player.rotation(), 1);
+			QCOMPARE(player.rotation(), 3);
 
 			player.rotate(1);
 
@@ -24,23 +24,23 @@ class PlayerTests : public QObject
 
 			player.rotate(1);
 
-			QCOMPARE(player.rotation(), 3);
-
-			player.rotate(1);
-
-			QCOMPARE(player.rotation(), 0);
-
-			player.rotate(1);
-
 			QCOMPARE(player.rotation(), 1);
 
+			player.rotate(1);
+
+			QCOMPARE(player.rotation(), 0);
+
+			player.rotate(1);
+
+			QCOMPARE(player.rotation(), 3);
+
 			player.rotate(-1);
 
 			QCOMPARE(player.rotation(), 0);
 
 			player.rotate(-1);
 
-			QCOMPARE(player.rotation(), 3);
+			QCOMPARE(player.rotation(), 1);
 		}
 
 		void shouldBeAbleToAdvance()
@@ -60,7 +60,7 @@ class PlayerTests : public QObject
 			QCOMPARE(player.x(), 0);
 			QCOMPARE(player.y(), -2);
 
-			player.rotate(1);
+			player.rotate(-1);
 			player.advance();
 
 			QCOMPARE(player.x(), 1);
@@ -71,7 +71,7 @@ class PlayerTests : public QObject
 			QCOMPARE(player.x(), 2);
 			QCOMPARE(player.y(), -2);
 
-			player.rotate(1);
+			player.rotate(-1);
 			player.advance();
 
 			QCOMPARE(player.x(), 2);
@@ -82,7 +82,7 @@ class PlayerTests : public QObject
 			QCOMPARE(player.x(), 2);
 			QCOMPARE(player.y(), 0);
 
-			player.rotate(1);
+			player.rotate(-1);
 			player.advance();
 
 			QCOMPARE(player.x(), 1);
@@ -111,7 +111,7 @@ class PlayerTests : public QObject
 			QCOMPARE(player.x(), 0);
 			QCOMPARE(player.y(), 2);
 
-			player.rotate(1);
+			player.rotate(-1);
 			player.retreat();
 
 			QCOMPARE(player.x(), -1);
@@ -122,7 +122,10 @@ class PlayerTests : public QObject
 			QCOMPARE(player.x(), -2);
 			QCOMPARE(player.y(), 2);
 
-			player.rotate(1);
+			player.rotate(-1);
+
+			QCOMPARE(player.rotation(), 2);
+
 			player.retreat();
 
 			QCOMPARE(player.x(), -2);
@@ -133,7 +136,7 @@ class PlayerTests : public QObject
 			QCOMPARE(player.x(), -2);
 			QCOMPARE(player.y(), 0);
 
-			player.rotate(1);
+			player.rotate(-1);
 			player.retreat();
 
 			QCOMPARE(player.x(), -1);

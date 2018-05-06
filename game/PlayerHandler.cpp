@@ -2,7 +2,7 @@
 
 PlayerHandler::PlayerHandler()
 	: m_players(4)
-	, m_playerCount(4)
+	, m_playerCount(1)
 {
 }
 

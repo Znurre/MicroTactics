@@ -3,61 +3,35 @@
 
 #include <cmath>
 
-#include "IPlayer.h"
+#include <QtMath>
 
-class Player : public IPlayer
+#include "IPlayer.h"
+#include "ICharacterProperties.h"
+#include "Character.h"
+
+class Player
+	: public IPlayer
+	, public ICharacterProperties
 {
 	public:
-		Player()
-			: m_rotation(0)
-			, m_x(0)
-			, m_y(0)
-		{
-		}
+		Player();
 
-		int rotation() const override
-		{
-			return m_rotation;
-		}
+		int rotation() const override;
+		int x() const override;
+		int y() const override;
 
-		int x() const override
-		{
-			return m_x;
-		}
+		void rotate(int direction) override;
 
-		int y() const override
-		{
-			return m_y;
-		}
+		void advance() override;
+		void retreat() override;
+		void shoot() override;
+		void melee() override;
 
-		void rotate(int direction) override
-		{
-			m_rotation = ((m_rotation + direction) % 4 + 4) % 4;
-		}
-
-		void advance() override
-		{
-			m_x += sin(m_rotation * M_PI / 2);
-			m_y -= cos(m_rotation * M_PI / 2);
-		}
-
-		void retreat() override
-		{
-			m_x -= sin(m_rotation * M_PI / 2);
-			m_y += cos(m_rotation * M_PI / 2);
-		}
-
-		void shoot() override
-		{
-
-		}
-
-		void melee() override
-		{
-
-		}
+		void draw(QPainter &painter) override;
 
 	private:
+		Character m_character;
+
 		int m_rotation;
 		int m_x;
 		int m_y;
