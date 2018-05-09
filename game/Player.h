@@ -27,7 +27,7 @@ class Player
 		void shoot() override;
 		void melee() override;
 
-		void draw(QPainter &painter) override;
+		void iterate(ISceneNodeCallback &callback) override;
 
 	private:
 		Character m_character;

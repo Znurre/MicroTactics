@@ -1,9 +1,9 @@
 #ifndef IPLAYER_H
 #define IPLAYER_H
 
-#include "IDrawable.h"
+#include "ISceneNode.h"
 
-class IPlayer : public IDrawable
+class IPlayer : public ISceneNode
 {
 	public:
 		virtual void rotate(int direction) = 0;

@@ -5,10 +5,12 @@ Board::Board()
 {
 }
 
-void Board::draw(QPainter &painter)
+void Board::iterate(ISceneNodeCallback &callback)
 {
+	callback.node(this);
+
 	for (IMapTile *tile : m_map.tiles())
 	{
-		tile->draw(painter);
+		tile->iterate(callback);
 	}
 }

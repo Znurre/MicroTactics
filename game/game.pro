@@ -37,12 +37,14 @@ HEADERS += Player.h \
     Map.h \
     Window.h \
     Character.h \
-    Turret.h \
     ICharacterProperties.h \
     IPalette.h \
     Palette1.h \
     IFaceTemplate.h \
-    CuteFaceTemplate.h
+    CuteFaceTemplate.h \
+    IObject.h \
+    ISceneNode.h \
+    ICharacterProperties.h
 
 SOURCES += \
     KeyInputHandler.cpp \
@@ -53,6 +55,5 @@ SOURCES += \
     Window.cpp \
     Player.cpp \
     Character.cpp \
-    Turret.cpp \
     Palette1.cpp \
     CuteFaceTemplate.cpp

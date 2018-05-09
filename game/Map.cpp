@@ -21,6 +21,16 @@ class GroundTile : public IMapTile
 			painter.drawImage(x, -y, image);
 		}
 
+		void iterate(ISceneNodeCallback &callback) override
+		{
+			callback.node(this);
+		}
+
+		int order() const override
+		{
+			return -(m_x + m_y);
+		}
+
 		bool isCollidable() const override
 		{
 			return false;
@@ -50,6 +60,16 @@ class CoverTile : public IMapTile
 			const int y = m_x * (height / 4) + m_y * (height / 4);
 
 			painter.drawImage(x, -y, image);
+		}
+
+		void iterate(ISceneNodeCallback &callback) override
+		{
+			callback.node(this);
+		}
+
+		int order() const override
+		{
+			return -(m_x + m_y);
 		}
 
 		bool isCollidable() const override

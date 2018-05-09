@@ -50,7 +50,9 @@ void Player::melee()
 
 }
 
-void Player::draw(QPainter &painter)
+void Player::iterate(ISceneNodeCallback &callback)
 {
-	m_character.draw(painter);
+	callback.node(this);
+
+	m_character.iterate(callback);
 }

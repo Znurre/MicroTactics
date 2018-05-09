@@ -4,8 +4,9 @@
 #include <QList>
 
 #include "IDrawable.h"
+#include "ISceneNode.h"
 
-class IMapTile : public IDrawable
+class IMapTile : public ISceneNode, public IDrawable
 {
 	public:
 		virtual bool isCollidable() const = 0;

@@ -2,7 +2,6 @@
 #include <QtMath>
 #include <QDebug>
 
-#include "Turret.h"
 #include "Window.h"
 #include "CuteFaceTemplate.h"
 #include "Palette1.h"
@@ -45,6 +44,7 @@ void Window::paintEvent(QPaintEvent *event)
 		}
 	}
 
+	glClearColor(0.32, 0.42, 0.40, 1);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	QPainter painter(this);
@@ -52,14 +52,18 @@ void Window::paintEvent(QPaintEvent *event)
 	painter.setRenderHint(QPainter::Antialiasing);
 	painter.setPen(Qt::NoPen);
 
-	m_board.draw(painter);
+	DrawableCallback callback;
+
+	m_board.iterate(callback);
 
 	for (int i = 0; i < m_playerHandler.playerCount(); i++)
 	{
 		IPlayer &player = m_playerHandler.player(i);
 
-		player.draw(painter);
+		player.iterate(callback);
 	}
+
+	callback.drawDeferred(painter);
 
 	update();
 }

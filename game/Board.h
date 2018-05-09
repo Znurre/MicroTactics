@@ -1,16 +1,16 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include "IDrawable.h"
+#include "ISceneNode.h"
 #include "IMap.h"
 #include "Map.h"
 
-class Board : public IDrawable
+class Board : public ISceneNode
 {
 	public:
 		Board();
 
-		void draw(QPainter &painter) override;
+		void iterate(ISceneNodeCallback &callback) override;
 
 	private:
 		Map m_dummyMap;

@@ -9,6 +9,8 @@ class IDrawable
 		virtual ~IDrawable() = default;
 
 		virtual void draw(QPainter &painter) = 0;
+
+		virtual int order() const = 0;
 };
 
 #endif // IDRAWABLE_H
