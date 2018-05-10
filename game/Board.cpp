@@ -1,7 +1,8 @@
 #include "Board.h"
+#include "MapHandler.h"
 
-Board::Board()
-	: m_map(m_dummyMap)
+Board::Board(MapHandler &mapHandler)
+	: m_mapHandler(mapHandler)
 {
 }
 
@@ -9,7 +10,9 @@ void Board::iterate(ISceneNodeCallback &callback)
 {
 	callback.node(this);
 
-	for (IMapTile *tile : m_map.tiles())
+	const IMap &map = m_mapHandler.map();
+
+	for (IMapTile *tile : map.tiles())
 	{
 		tile->iterate(callback);
 	}

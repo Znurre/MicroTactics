@@ -7,8 +7,11 @@
 #include "Palette1.h"
 
 Window::Window()
-	: m_playerTurnHandler(m_playerHandler)
+	: m_collisionHandler(m_mapHandler)
+	, m_playerHandler(m_collisionHandler)
+	, m_playerTurnHandler(m_playerHandler)
 	, m_keyInputHandler(m_playerTurnHandler)
+	, m_board(m_mapHandler)
 	, m_elapsed(0)
 	, m_fps(0)
 {

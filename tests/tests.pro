@@ -37,4 +37,5 @@ HEADERS += \
     PlayerTests.h \
     KeyInputHandlerTests.h \
     Mock.h \
-    PlayerTurnHandlerTests.h
+    PlayerTurnHandlerTests.h \
+    PlayerHandlerTests.h

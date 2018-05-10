@@ -3,8 +3,10 @@
 
 #include "Board.h"
 #include "KeyInputHandler.h"
+#include "MapHandler.h"
 #include "PlayerHandler.h"
 #include "PlayerTurnHandler.h"
+#include "CollisionHandler.h"
 
 #include <QRasterWindow>
 #include <QElapsedTimer>
@@ -21,6 +23,8 @@ class Window : public QOpenGLWindow
 
 		QElapsedTimer m_timer;
 
+		MapHandler m_mapHandler;
+		CollisionHandler m_collisionHandler;
 		PlayerHandler m_playerHandler;
 		PlayerTurnHandler m_playerTurnHandler;
 		KeyInputHandler m_keyInputHandler;

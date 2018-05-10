@@ -19,8 +19,11 @@ void Character::draw(QPainter &painter)
 	const int height = image.height();
 	const int x = m_properties.x() * (width / 2) - m_properties.y() * (width / 2);
 	const int y = m_properties.x() * (height / 4) + m_properties.y() * (height / 4);
+	const int health = m_properties.health();
 
+	painter.setOpacity(health / 3.0);
 	painter.drawImage(x, -y, image);
+	painter.setOpacity(1);
 }
 
 int Character::order() const

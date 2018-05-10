@@ -5,17 +5,17 @@
 #include "IMap.h"
 #include "Map.h"
 
+class MapHandler;
+
 class Board : public ISceneNode
 {
 	public:
-		Board();
+		Board(MapHandler &mapHandler);
 
 		void iterate(ISceneNodeCallback &callback) override;
 
 	private:
-		Map m_dummyMap;
-
-		IMap &m_map;
+		MapHandler &m_mapHandler;
 };
 
 #endif // BOARD_H

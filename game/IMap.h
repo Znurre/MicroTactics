@@ -15,7 +15,9 @@ class IMapTile : public ISceneNode, public IDrawable
 class IMap
 {
 	public:
-		virtual QList<IMapTile *> tiles() = 0;
+		virtual IMapTile *tileAt(int x, int y) const = 0;
+
+		virtual QList<IMapTile *> tiles() const = 0;
 };
 
 #endif // IMAP_H

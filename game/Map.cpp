@@ -83,24 +83,49 @@ class CoverTile : public IMapTile
 };
 
 Map::Map()
+	: m_width(3)
+	, m_height(3)
 {
-
+	m_tiles =
+	{
+		new GroundTile(0, 0),
+		new GroundTile(1, 0),
+		new GroundTile(2, 0),
+		new GroundTile(0, 1),
+		new CoverTile(1, 1),
+		new GroundTile(2, 1),
+		new GroundTile(0, 2),
+		new GroundTile(1, 2),
+		new GroundTile(2, 2),
+	};
 }
 
-QList<IMapTile *> Map::tiles()
+int Map::width() const
 {
-	static const QList<IMapTile *> tiles =
-	{
-		new GroundTile(2, 2),
-		new GroundTile(2, 1),
-		new GroundTile(2, 0),
-		new GroundTile(1, 2),
-		new CoverTile(1, 1),
-		new GroundTile(1, 0),
-		new GroundTile(0, 2),
-		new GroundTile(0, 1),
-		new GroundTile(0, 0),
-	};
+	return m_width;
+}
 
-	return tiles;
+int Map::height() const
+{
+	return m_height;
+}
+
+IMapTile *Map::tileAt(int x, int y) const
+{
+	if (x < 0 || x >= m_width)
+	{
+		return nullptr;
+	}
+
+	if (y < 0 || y >= m_height)
+	{
+		return nullptr;
+	}
+
+	return m_tiles[x +(m_width * y)];
+}
+
+QList<IMapTile *> Map::tiles() const
+{
+	return m_tiles;
 }

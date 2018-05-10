@@ -8,7 +8,18 @@ class Map : public IMap
 	public:
 		Map();
 
-		QList<IMapTile *> tiles() override;
+		int width() const;
+		int height() const;
+
+		IMapTile *tileAt(int x, int y) const override;
+
+		QList<IMapTile *> tiles() const override;
+
+	private:
+		QList<IMapTile *> m_tiles;
+
+		int m_width;
+		int m_height;
 };
 
 #endif // MAP_H

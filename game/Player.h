@@ -6,21 +6,23 @@
 #include <QtMath>
 
 #include "IPlayer.h"
-#include "ICharacterProperties.h"
 #include "Character.h"
 
-class Player
-	: public IPlayer
-	, public ICharacterProperties
+class ICollisionHandler;
+class IPlayerHandler;
+
+class Player : public IPlayer
 {
 	public:
-		Player();
+		Player(ICollisionHandler &collisionHandler, IPlayerHandler &playerHandler);
 
+		int health() const;
 		int rotation() const override;
 		int x() const override;
 		int y() const override;
 
 		void rotate(int direction) override;
+		void damage();
 
 		void advance() override;
 		void retreat() override;
@@ -30,8 +32,12 @@ class Player
 		void iterate(ISceneNodeCallback &callback) override;
 
 	private:
+		ICollisionHandler &m_collisionHandler;
+		IPlayerHandler &m_playerHandler;
+
 		Character m_character;
 
+		int m_health;
 		int m_rotation;
 		int m_x;
 		int m_y;

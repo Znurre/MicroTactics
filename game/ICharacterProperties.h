@@ -1,9 +1,12 @@
 #ifndef ICHARACTERPROPERTIES_H
 #define ICHARACTERPROPERTIES_H
 
-class ICharacterProperties
+#include "ISceneNode.h"
+
+class ICharacterProperties : public ISceneNode
 {
 	public:
+		virtual int health() const = 0;
 		virtual int rotation() const = 0;
 		virtual int x() const = 0;
 		virtual int y() const = 0;

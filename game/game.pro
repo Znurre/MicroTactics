@@ -44,7 +44,10 @@ HEADERS += Player.h \
     CuteFaceTemplate.h \
     IObject.h \
     ISceneNode.h \
-    ICharacterProperties.h
+    ICharacterProperties.h \
+    CollisionHandler.h \
+    ICollisionHandler.h \
+    MapHandler.h
 
 SOURCES += \
     KeyInputHandler.cpp \
@@ -56,4 +59,6 @@ SOURCES += \
     Player.cpp \
     Character.cpp \
     Palette1.cpp \
-    CuteFaceTemplate.cpp
+    CuteFaceTemplate.cpp \
+    CollisionHandler.cpp \
+    MapHandler.cpp

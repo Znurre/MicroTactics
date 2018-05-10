@@ -3,6 +3,7 @@
 #include "PlayerTests.h"
 #include "KeyInputHandlerTests.h"
 #include "PlayerTurnHandlerTests.h"
+#include "PlayerHandlerTests.h"
 
 template<class T>
 void runTest()
@@ -17,4 +18,5 @@ int main()
 	runTest<PlayerTests>();
 	runTest<KeyInputHandlerTests>();
 	runTest<PlayerTurnHandlerTests>();
+	runTest<PlayerHandlerTests>();
 }
