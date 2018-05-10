@@ -1,17 +1,21 @@
 #ifndef MAPHANDLER_H
 #define MAPHANDLER_H
 
-#include "Map.h"
+#include <QList>
 
-class MapHandler
+#include "IMapHandler.h"
+
+class IMap;
+
+class MapHandler : public IMapHandler
 {
 	public:
 		MapHandler();
 
-		IMap &map();
+		IMap &map() override;
 
 	private:
-		Map m_map;
+		QList<IMap *> m_maps;
 };
 
 #endif // MAPHANDLER_H

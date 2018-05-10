@@ -2,27 +2,32 @@
 #define PLAYERHANDLER_H
 
 #include "IPlayerHandler.h"
+#include "PlayerProvider.h"
 #include "Player.h"
+
+class ICollisionHandler;
+class IMapHandler;
 
 class PlayerHandler : public IPlayerHandler
 {
 	public:
-		PlayerHandler(ICollisionHandler &collisionHandler);
+		PlayerHandler(ICollisionHandler &collisionHandler, IMapHandler &mapHandler);
 
 		void addPlayer() override;
 		void removePlayer() override;
 
 		int playerCount() const override;
 
-		IPlayer *playerInDirection(int x, int y, int direction) override;
-		IPlayer *playerAt(int x, int y) override;
+		QList<IPlayer *> activePlayers() const override;
 
 		IPlayer &player(int index) override;
 
 	private:
 		ICollisionHandler &m_collisionHandler;
 
-		QList<Player *> m_players;
+		PlayerProvider m_playerProvider;
+
+		QList<IPlayer *> m_players;
 
 		int m_playerCount;
 };

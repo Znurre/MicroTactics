@@ -47,7 +47,14 @@ HEADERS += Player.h \
     ICharacterProperties.h \
     CollisionHandler.h \
     ICollisionHandler.h \
-    MapHandler.h
+    MapHandler.h \
+    MapLoader.h \
+    GroundTile.h \
+    CoverTile.h \
+    IMapHandler.h \
+    CurrentPlayerIndicator.h \
+    PlayerProvider.h \
+    IPlayerProvider.h
 
 SOURCES += \
     KeyInputHandler.cpp \
@@ -61,4 +68,11 @@ SOURCES += \
     Palette1.cpp \
     CuteFaceTemplate.cpp \
     CollisionHandler.cpp \
-    MapHandler.cpp
+    MapHandler.cpp \
+    MapLoader.cpp \
+    GroundTile.cpp \
+    CoverTile.cpp \
+    CurrentPlayerIndicator.cpp \
+    PlayerProvider.cpp
+
+LIBS += -ltiled

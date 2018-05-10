@@ -1,5 +1,6 @@
 #include "PlayerTurnHandler.h"
 #include "IPlayerHandler.h"
+#include "Player.h"
 
 PlayerTurnHandler::PlayerTurnHandler(IPlayerHandler &playerHandler)
 	: m_playerHandler(playerHandler)
@@ -18,4 +19,11 @@ IPlayer &PlayerTurnHandler::current()
 void PlayerTurnHandler::next()
 {
 	m_current++;
+
+	IPlayer &player = current();
+
+	if (!player.health())
+	{
+		next();
+	}
 }

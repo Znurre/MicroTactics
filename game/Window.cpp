@@ -8,10 +8,11 @@
 
 Window::Window()
 	: m_collisionHandler(m_mapHandler)
-	, m_playerHandler(m_collisionHandler)
+	, m_playerHandler(m_collisionHandler, m_mapHandler)
 	, m_playerTurnHandler(m_playerHandler)
 	, m_keyInputHandler(m_playerTurnHandler)
 	, m_board(m_mapHandler)
+	, m_currentPlayerIndicator(m_playerTurnHandler)
 	, m_elapsed(0)
 	, m_fps(0)
 {
@@ -51,7 +52,7 @@ void Window::paintEvent(QPaintEvent *event)
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	QPainter painter(this);
-	painter.translate(500, 500);
+	painter.translate(800, 900);
 	painter.setRenderHint(QPainter::Antialiasing);
 	painter.setPen(Qt::NoPen);
 
@@ -67,6 +68,13 @@ void Window::paintEvent(QPaintEvent *event)
 	}
 
 	callback.drawDeferred(painter);
+
+	m_currentPlayerIndicator.draw(painter);
+
+	IPlayer &current = m_playerTurnHandler.current();
+
+	painter.resetTransform();
+	painter.fillRect(QRectF(10, 10, 30, 30), (Qt::GlobalColor)(Qt::red + current.id()));
 
 	update();
 }

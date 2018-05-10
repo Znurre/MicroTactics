@@ -1,6 +1,8 @@
 #ifndef IPLAYERTURNHANDLER_H
 #define IPLAYERTURNHANDLER_H
 
+#include "IDrawable.h"
+
 class IPlayer;
 
 class IPlayerTurnHandler

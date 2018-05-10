@@ -7,6 +7,7 @@
 
 #include "PlayerHandler.h"
 #include "ICollisionHandler.h"
+#include "IMapHandler.h"
 
 using namespace fakeit;
 
@@ -16,7 +17,7 @@ class PlayerHandlerTests : public QObject
 
 	public:
 		PlayerHandlerTests()
-			: m_playerHandler(m_collisionHandlerMock.get())
+			: m_playerHandler(m_collisionHandlerMock.get(), m_mapHandlerMock.get())
 		{
 		}
 
@@ -27,6 +28,7 @@ class PlayerHandlerTests : public QObject
 
 	private:
 		Mock<ICollisionHandler> m_collisionHandlerMock;
+		Mock<IMapHandler> m_mapHandlerMock;
 
 		PlayerHandler m_playerHandler;
 };

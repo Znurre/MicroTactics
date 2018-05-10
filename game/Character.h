@@ -7,6 +7,8 @@
 #include "ISceneNode.h"
 #include "ICharacterProperties.h"
 
+class IPlayerTurnHandler;
+
 class Character : public ISceneNode, public IDrawable
 {
 	public:
@@ -21,6 +23,7 @@ class Character : public ISceneNode, public IDrawable
 		QImage selectImage() const;
 
 		ICharacterProperties &m_properties;
+
 		Palette1 m_palette;
 		CuteFaceTemplate m_faceTemplate;
 };

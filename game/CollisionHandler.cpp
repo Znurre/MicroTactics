@@ -1,5 +1,6 @@
 #include "CollisionHandler.h"
 #include "MapHandler.h"
+#include "IMap.h"
 
 CollisionHandler::CollisionHandler(MapHandler &mapHandler)
 	: m_mapHandler(mapHandler)

@@ -7,6 +7,7 @@
 #include "PlayerHandler.h"
 #include "PlayerTurnHandler.h"
 #include "CollisionHandler.h"
+#include "CurrentPlayerIndicator.h"
 
 #include <QRasterWindow>
 #include <QElapsedTimer>
@@ -29,6 +30,7 @@ class Window : public QOpenGLWindow
 		PlayerTurnHandler m_playerTurnHandler;
 		KeyInputHandler m_keyInputHandler;
 		Board m_board;
+		CurrentPlayerIndicator m_currentPlayerIndicator;
 
 		long m_elapsed;
 		long m_fps;

@@ -1,17 +1,23 @@
 #include "PlayerHandler.h"
 #include "ICollisionHandler.h"
 
-PlayerHandler::PlayerHandler(ICollisionHandler &collisionHandler)
+PlayerHandler::PlayerHandler(ICollisionHandler &collisionHandler
+	, IMapHandler &mapHandler
+	)
 	: m_collisionHandler(collisionHandler)
-//	: m_players(4)
-	, m_playerCount(2)
+	, m_playerProvider(*this, collisionHandler)
+	, m_playerCount(8)
 {
 	m_players =
 	{
-		new Player(collisionHandler, *this),
-		new Player(collisionHandler, *this),
-		new Player(collisionHandler, *this),
-		new Player(collisionHandler, *this)
+		new Player(0, collisionHandler, mapHandler, m_playerProvider),
+		new Player(1, collisionHandler, mapHandler, m_playerProvider),
+		new Player(2, collisionHandler, mapHandler, m_playerProvider),
+		new Player(3, collisionHandler, mapHandler, m_playerProvider),
+		new Player(0, collisionHandler, mapHandler, m_playerProvider),
+		new Player(1, collisionHandler, mapHandler, m_playerProvider),
+		new Player(2, collisionHandler, mapHandler, m_playerProvider),
+		new Player(3, collisionHandler, mapHandler, m_playerProvider),
 	};
 }
 
@@ -36,42 +42,21 @@ int PlayerHandler::playerCount() const
 	return m_playerCount;
 }
 
-IPlayer *PlayerHandler::playerInDirection(int x, int y, int direction)
+QList<IPlayer *> PlayerHandler::activePlayers() const
 {
-	const int dx = (int)sin(direction * M_PI / 2);
-	const int dy = -(int)cos(direction * M_PI / 2);
+	QList<IPlayer *> players;
 
-	for (int i = 1; ; i++)
+	for (int i = 0; i < m_playerCount; i++)
 	{
-		const int rx = x + dx * i;
-		const int ry = y + dy * i;
+		IPlayer *player = m_players[i];
 
-		if (m_collisionHandler.isCollidable(rx, ry))
+		if (player->health())
 		{
-			return nullptr;
-		}
-
-		for (int j = 0; j < m_playerCount; j++)
-		{
-			Player *player = m_players[j];
-
-			if (player->x() == rx &&
-				player->y() == ry)
-			{
-				return player;
-			}
+			players << player;
 		}
 	}
 
-	return nullptr;
-}
-
-IPlayer *PlayerHandler::playerAt(int x, int y)
-{
-	Q_UNUSED(x);
-	Q_UNUSED(y);
-
-	return m_players[0];
+	return players;
 }
 
 IPlayer &PlayerHandler::player(int index)

@@ -4,8 +4,9 @@
 #include "fakeit.hpp"
 
 #include "Player.h"
-#include "IPlayerHandler.h"
+#include "IPlayerProvider.h"
 #include "ICollisionHandler.h"
+#include "IMapHandler.h"
 
 using namespace fakeit;
 
@@ -16,7 +17,11 @@ class PlayerTests : public QObject
 	private:
 		Player createSut()
 		{
-			return Player(m_collisionHandlerMock.get(), m_playerHandlerMock.get());
+			return Player(0
+				, m_collisionHandlerMock.get()
+				, m_mapHandlerMock.get()
+				, m_playerProviderMock.get()
+				);
 		}
 
 	private slots:
@@ -183,10 +188,10 @@ class PlayerTests : public QObject
 			Fake(Method(playerNorth, damage));
 			Fake(Method(playerWest, damage));
 
-			When(Method(m_playerHandlerMock, playerInDirection)(-1, -1, 0)).AlwaysReturn(&playerSouth.get());
-			When(Method(m_playerHandlerMock, playerInDirection)(-1, -1, 1)).AlwaysReturn(&playerEast.get());
-			When(Method(m_playerHandlerMock, playerInDirection)(-1, -1, 2)).AlwaysReturn(&playerNorth.get());
-			When(Method(m_playerHandlerMock, playerInDirection)(-1, -1, 3)).AlwaysReturn(&playerWest.get());
+			When(Method(m_playerProviderMock, playerInDirection)(&sut)).AlwaysReturn(&playerSouth.get());
+			When(Method(m_playerProviderMock, playerInDirection)(&sut)).AlwaysReturn(&playerEast.get());
+			When(Method(m_playerProviderMock, playerInDirection)(&sut)).AlwaysReturn(&playerNorth.get());
+			When(Method(m_playerProviderMock, playerInDirection)(&sut)).AlwaysReturn(&playerWest.get());
 
 			sut.shoot();
 
@@ -224,12 +229,13 @@ class PlayerTests : public QObject
 		{
 			Player sut = createSut();
 
-			When(Method(m_playerHandlerMock, playerInDirection)).Return(nullptr);
+			When(Method(m_playerProviderMock, playerInDirection)).Return(nullptr);
 
 			sut.shoot();
 		}
 
 	private:
-		Mock<IPlayerHandler> m_playerHandlerMock;
+		Mock<IPlayerProvider> m_playerProviderMock;
 		Mock<ICollisionHandler> m_collisionHandlerMock;
+		Mock<IMapHandler> m_mapHandlerMock;
 };

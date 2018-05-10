@@ -1,5 +1,7 @@
 #include "Character.h"
 #include "ICharacterProperties.h"
+#include "IPlayerTurnHandler.h"
+#include "IPlayer.h"
 
 Character::Character(ICharacterProperties &properties)
 	: m_properties(properties)
@@ -13,17 +15,26 @@ void Character::iterate(ISceneNodeCallback &callback)
 
 void Character::draw(QPainter &painter)
 {
-	const QImage &image = selectImage();
+	if (!m_properties.health())
+	{
+		return;
+	}
+
+	QImage image = selectImage();
+
+	QColor color((Qt::GlobalColor)(Qt::red + m_properties.id()));
+	color.setAlpha(100);
+
+	QPainter painter1(&image);
+	painter1.setCompositionMode(QPainter::CompositionMode_SourceAtop);
+	painter1.fillRect(image.rect(), color);
 
 	const int width = image.width();
 	const int height = image.height();
 	const int x = m_properties.x() * (width / 2) - m_properties.y() * (width / 2);
 	const int y = m_properties.x() * (height / 4) + m_properties.y() * (height / 4);
-	const int health = m_properties.health();
 
-	painter.setOpacity(health / 3.0);
 	painter.drawImage(x, -y, image);
-	painter.setOpacity(1);
 }
 
 int Character::order() const
